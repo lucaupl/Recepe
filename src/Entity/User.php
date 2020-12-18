@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -33,6 +35,16 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Recepe::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $recepes;
+
+    public function __construct()
+    {
+        $this->recepes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -110,5 +122,35 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection|Recepe[]
+     */
+    public function getRecepes(): Collection
+    {
+        return $this->recepes;
+    }
+
+    public function addRecepe(Recepe $recepe): self
+    {
+        if (!$this->recepes->contains($recepe)) {
+            $this->recepes[] = $recepe;
+            $recepe->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecepe(Recepe $recepe): self
+    {
+        if ($this->recepes->removeElement($recepe)) {
+            // set the owning side to null (unless already changed)
+            if ($recepe->getUser() === $this) {
+                $recepe->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

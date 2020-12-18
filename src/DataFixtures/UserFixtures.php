@@ -23,6 +23,7 @@ class UserFixtures extends Fixture
             $user = new User(); 
             $user->setEmail($faker->email);
             $user->setPassword($pwd);
+            $this->addReference("user" . $i, $user);
             $manager->persist($user);
         }
 
