@@ -30,12 +30,12 @@ class Recepe
     private $picture;
 
     /**
-     * @ORM\OneToMany(targetEntity=Ingredient::class, mappedBy="Recette", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Ingredient::class, mappedBy="Recette", orphanRemoval=true, cascade={"persist"})
      */
     private $ingredients;
 
     /**
-     * @ORM\OneToMany(targetEntity=Step::class, mappedBy="recepe", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Step::class, mappedBy="recepe", orphanRemoval=true, cascade={"persist"})
      */
     private $steps;
 

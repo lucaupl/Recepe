@@ -3,12 +3,15 @@
 namespace App\Form;
 
 use App\Entity\Recepe;
+use App\Form\StepType;
+use App\Form\IngredientType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class RecepeType extends AbstractType
 {
@@ -19,6 +22,16 @@ class RecepeType extends AbstractType
                 "required" => true,
 
                 'label' => 'Nom de la recette'
+            ])
+            ->add('ingredients', CollectionType::class, [
+                'entry_type' => IngredientType::class,
+                'entry_options' => ['label' => false],
+                'allow_add' => true, 'label' => false, 'by_reference' => false, 'allow_delete' => true
+            ])
+            ->add('steps', CollectionType::class, [
+                'entry_type' => StepType::class,
+                'entry_options' => ['label' => false],
+                'allow_add' => true, 'label' => false, 'by_reference' => false, 'allow_delete' => true
             ])
             ->add('picture', FileType::class, [
                 'label' => 'Insérez une image ici',

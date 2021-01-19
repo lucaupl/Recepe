@@ -1,13 +1,25 @@
-{% extends "base.html.twig" %}
-{% block title %}
-    Créez vos recettes!
-{% endblock %}
-{% block body %}
-    <h1>Créez vos recettes ici</h1>
-    {{form_start(form)}}
-        {{ form_row(form.name) }}
-        {{ form_row(form.picture) }} 
-        <button type="submit"> Envoyer </button>
-    {{ form_end(form) }}
+{% extends 'base.html.twig' %}
 
+{% block title %}Créer une recette{% endblock %}
+
+{% block body %}
+<div>
+    <h1>Créer une recette</h1>
+    {{ form_start(form) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.picture) }}
+        <ul class="ingredients" data-prototype="{{ form_widget(form.ingredients.vars.prototype)|e('html_attr') }}"></ul>
+        <button type="button" class="add_item_link1" data-collection-holder-class="ingredients">Ajouter un ingrédient</button>
+        <ul class="steps" data-prototype="{{ form_widget(form.steps.vars.prototype)|e('html_attr') }}"></ul>
+        <button type="button" class="add_item_link2" data-collection-holder-class="steps">Ajouter une étape</button>
+
+        <button type="submit">
+            Ajouter la recette
+        </button>
+    {{ form_end(form)}}
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/form.js"></script>
 {% endblock %}

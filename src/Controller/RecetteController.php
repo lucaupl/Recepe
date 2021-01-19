@@ -33,6 +33,15 @@ class RecetteController extends AbstractController
     {
        $recette = new Recepe();
        $form = $this->createForm(RecepeType::class, $recette);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $recette->setUser($this->getUser());
+            $manager->persist($recette);
+            $manager->flush();
+            return $this->redirectToRoute("recette");
+        }
+
        return $this->render('recette/create.html.twig', [
            'form' => $form->createView(),
        ]);

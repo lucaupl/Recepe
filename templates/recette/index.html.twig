@@ -3,7 +3,8 @@
 {% block title %}Liste de recette!{% endblock %}
 
 {% block body %}
-    <a href="{{path("app_logout")}}">Deconnexion</a>
+    <a href="{{path("app_logout")}}">Deconnexion</a> 
+    <a href="{{path("recette_create")}}"> Créez une recette </a>
     <div class="accordion accordion-flush" id="accordionFlushExample">
     {% for recette in recettes %}
         <div class="accordion-item">
