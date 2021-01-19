@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Recepe;
-use App\Form\RecepeType;
-use App\Repository\RecepeRepository;
+use App\Entity\Recipe;
+use App\Form\RecipeType;
+use App\Repository\RecipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,10 +18,10 @@ class RecetteController extends AbstractController
      * @Route("/recette", name="recette")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
-    public function index(RecepeRepository $recepeRepository): Response
+    public function index(RecipeRepository $recipeRepository): Response
     {
         return $this->render('recette/index.html.twig', [
-            'recettes' => $recepeRepository->findAll(),
+            'recettes' => $recipeRepository->findAll(),
         ]);
     }
 
@@ -31,8 +31,8 @@ class RecetteController extends AbstractController
      */
     public function create(Request $request, EntityManagerInterface $manager)
     {
-       $recette = new Recepe();
-       $form = $this->createForm(RecepeType::class, $recette);
+       $recette = new Recipe();
+       $form = $this->createForm(RecipeType::class, $recette);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

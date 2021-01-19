@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Recepe;
+use App\Entity\Recipe;
 use App\Form\StepType;
 use App\Form\IngredientType;
 use Symfony\Component\Form\AbstractType;
@@ -13,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
-class RecepeType extends AbstractType
+class RecipeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -55,7 +55,7 @@ class RecepeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Recepe::class,
+            'data_class' => Recipe::class,
         ]);
     }
 }

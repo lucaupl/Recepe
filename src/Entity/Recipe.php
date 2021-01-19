@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\RecepeRepository;
+use App\Repository\RecipeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=RecepeRepository::class)
+ * @ORM\Entity(repositoryClass=RecipeRepository::class)
  */
-class Recepe
+class Recipe
 {
     /**
      * @ORM\Id
@@ -35,12 +35,12 @@ class Recepe
     private $ingredients;
 
     /**
-     * @ORM\OneToMany(targetEntity=Step::class, mappedBy="recepe", orphanRemoval=true, cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Step::class, mappedBy="recipe", orphanRemoval=true, cascade={"persist"})
      */
     private $steps;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="recepes")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="recipes")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
@@ -122,7 +122,7 @@ class Recepe
     {
         if (!$this->steps->contains($step)) {
             $this->steps[] = $step;
-            $step->setRecepe($this);
+            $step->setRecipe($this);
         }
 
         return $this;
@@ -132,8 +132,8 @@ class Recepe
     {
         if ($this->steps->removeElement($step)) {
             // set the owning side to null (unless already changed)
-            if ($step->getRecepe() === $this) {
-                $step->setRecepe(null);
+            if ($step->getRecipe() === $this) {
+                $step->setRecipe(null);
             }
         }
 

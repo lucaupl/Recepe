@@ -4,7 +4,7 @@ namespace App\DataFixtures;
 
 use Faker\Factory;
 use App\Entity\Step;
-use App\DataFixtures\RecepeFixtures;
+use App\DataFixtures\RecipeFixtures;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -17,7 +17,7 @@ class StepsFixtures extends Fixture implements DependentFixtureInterface
         for ($i = 0; $i < 20; $i++){
             $steps = new Step();
             $steps->setName($faker->sentence(6));
-            $steps->setRecepe($this->getReference("recepe" . \random_int(0, 39)));
+            $steps->setRecipe($this->getReference("recipe" . \random_int(0, 39)));
             $manager->persist($steps);
         }
 
@@ -25,6 +25,6 @@ class StepsFixtures extends Fixture implements DependentFixtureInterface
     }
     public function getDependencies()
     {
-        return [RecepeFixtures::class];
+        return [RecipeFixtures::class];
     }
 }

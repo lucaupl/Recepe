@@ -37,13 +37,13 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity=Recepe::class, mappedBy="user", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Recipe::class, mappedBy="user", orphanRemoval=true)
      */
-    private $recepes;
+    private $recipes;
 
     public function __construct()
     {
-        $this->recepes = new ArrayCollection();
+        $this->recipes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -125,29 +125,29 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Recepe[]
+     * @return Collection|Recipe[]
      */
-    public function getRecepes(): Collection
+    public function getRecipes(): Collection
     {
-        return $this->recepes;
+        return $this->recipes;
     }
 
-    public function addRecepe(Recepe $recepe): self
+    public function addRecipe(Recipe $recipe): self
     {
-        if (!$this->recepes->contains($recepe)) {
-            $this->recepes[] = $recepe;
-            $recepe->setUser($this);
+        if (!$this->recipes->contains($recipe)) {
+            $this->recipes[] = $recipe;
+            $recipe->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeRecepe(Recepe $recepe): self
+    public function removeRecipe(Recipe $recipe): self
     {
-        if ($this->recepes->removeElement($recepe)) {
+        if ($this->recipes->removeElement($recipe)) {
             // set the owning side to null (unless already changed)
-            if ($recepe->getUser() === $this) {
-                $recepe->setUser(null);
+            if ($recipe->getUser() === $this) {
+                $recipe->setUser(null);
             }
         }
 

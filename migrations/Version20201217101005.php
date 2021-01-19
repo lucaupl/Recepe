@@ -20,16 +20,16 @@ final class Version20201217101005 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE recepe ADD user_id INT NOT NULL');
-        $this->addSql('ALTER TABLE recepe ADD CONSTRAINT FK_D3924853A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
-        $this->addSql('CREATE INDEX IDX_D3924853A76ED395 ON recepe (user_id)');
+        $this->addSql('ALTER TABLE recipe ADD user_id INT NOT NULL');
+        $this->addSql('ALTER TABLE recipe ADD CONSTRAINT FK_D3924853A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
+        $this->addSql('CREATE INDEX IDX_D3924853A76ED395 ON recipe (user_id)');
     }
 
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE recepe DROP FOREIGN KEY FK_D3924853A76ED395');
-        $this->addSql('DROP INDEX IDX_D3924853A76ED395 ON recepe');
-        $this->addSql('ALTER TABLE recepe DROP user_id');
+        $this->addSql('ALTER TABLE recipe DROP FOREIGN KEY FK_D3924853A76ED395');
+        $this->addSql('DROP INDEX IDX_D3924853A76ED395 ON recipe');
+        $this->addSql('ALTER TABLE recipe DROP user_id');
     }
 }
