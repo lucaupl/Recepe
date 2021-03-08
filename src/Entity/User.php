@@ -41,6 +41,11 @@ class User implements UserInterface
      */
     private $recipes;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
     public function __construct()
     {
         $this->recipes = new ArrayCollection();
@@ -150,6 +155,18 @@ class User implements UserInterface
                 $recipe->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

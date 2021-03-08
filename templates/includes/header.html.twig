@@ -1,0 +1,11 @@
+<!-- Navigation -->
+  <nav class="navbar navbar-light bg-light static-top">
+    <div class="container">
+      <a class="navbar-brand" href="{{path("home")}}">Recipe Box</a>
+      {% if app.user %}
+          <a class="btn btn-danger" href="{{path("app_logout")}}">Déconnexion</a>
+          {% else %}
+          <a class="btn btn-primary" href="{{path("app_login")}}">Connexion</a>
+      {% endif %}
+      </div>
+  </nav>

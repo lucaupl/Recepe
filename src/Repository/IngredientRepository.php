@@ -22,8 +22,8 @@ class IngredientRepository extends ServiceEntityRepository
     // /**
     //  * @return Ingredient[] Returns an array of Ingredient objects
     //  */
-    /*
-    public function findByExampleField($value)
+    
+    /*public function findByExampleField($value)
     {
         return $this->createQueryBuilder('i')
             ->andWhere('i.exampleField = :val')
@@ -33,11 +33,11 @@ class IngredientRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
-    }
-    */
+    }*/
+    
 
-    /*
-    public function findOneBySomeField($value): ?Ingredient
+    
+    /*public function findOneBySomeField($value): ?Ingredient
     {
         return $this->createQueryBuilder('i')
             ->andWhere('i.exampleField = :val')
@@ -45,6 +45,6 @@ class IngredientRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult()
         ;
-    }
-    */
+    }*/
+    
 }

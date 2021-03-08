@@ -22,8 +22,8 @@ class StepRepository extends ServiceEntityRepository
     // /**
     //  * @return Step[] Returns an array of Step objects
     //  */
-    /*
-    public function findByExampleField($value)
+    
+    /*public function findByExampleField($value)
     {
         return $this->createQueryBuilder('s')
             ->andWhere('s.exampleField = :val')
@@ -33,11 +33,11 @@ class StepRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
-    }
-    */
+    }*/
+    
 
-    /*
-    public function findOneBySomeField($value): ?Step
+    
+    /*public function findOneBySomeField($value): ?Step
     {
         return $this->createQueryBuilder('s')
             ->andWhere('s.exampleField = :val')
@@ -45,6 +45,6 @@ class StepRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult()
         ;
-    }
-    */
+    }*/
+    
 }

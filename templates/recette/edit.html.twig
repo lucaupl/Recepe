@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifiez votre recette{% endblock %}
+
+{% block body %}
+<div>
+    <h1>Modifiez votre recette: {{recette.name}}</h1>
+    {{ form_start(form) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.picture) }}
+        
+        <button type="button" class="add_item_link1" data-collection-holder-class="ingredients">Ajouter un ingrédient</button>
+        <ul class="ingredients" data-prototype="{{ form_widget(form.ingredients.vars.prototype)|e('html_attr') }}">
+            {% for ingredient in form.ingredients %}
+                <li>{{ form_row(ingredient.name) }}</li>
+            {% endfor %}
+        </ul>
+        <button type="button" class="add_item_link2" data-collection-holder-class="steps">Ajouter une étape</button>
+        <ul class="steps" data-prototype="{{ form_widget(form.steps.vars.prototype)|e('html_attr') }}">
+            {% for step in form.steps %}
+                <li>{{ form_row(step.name) }}</li>
+            {% endfor %}
+        </ul>
+        <button type="submit">
+            Ajouter la recette
+        </button>
+    {{ form_end(form)}}
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/form.js"></script>
+{% endblock %}
